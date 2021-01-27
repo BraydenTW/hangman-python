@@ -6,6 +6,8 @@ _A simple game of Hangman built with Python._ 🐍
 
 Simply fork this repository and run `main.py` in your terminal of choice.
 
+![Terminal screenshot](https://i.ibb.co/SNztYCP/Screenshot-605.png)
+
 Feel free to submit a PR or issue if you would like to request/make and improvement.
 
 ---
