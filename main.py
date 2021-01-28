@@ -10,16 +10,17 @@ def guess(state):
     duplicate_and_skip = False
 
     # Asks user to choose a letter
-    current_guess = input("Choose a letter: ")
+    current_guess = input("Choose a letter: ").lower()
+
 
     # Searches for a match between the chosen word and guessed letter
     for i in range(len(state["chosen_word_letters"])):
-        if state["chosen_word_letters"][i].lower() == current_guess.lower():
-            state["guessed_word_letters"][i] = current_guess.lower()
+        if state["chosen_word_letters"][i].lower() == current_guess:
+            state["guessed_word_letters"][i] = current_guess
             found_letter = True
 
     for letter in state["past_guesses"]:
-        if letter == current_guess.lower():
+        if letter == current_guess:
             found_letter = True
             duplicate_and_skip = True
             break
@@ -34,7 +35,7 @@ def guess(state):
     else:
         state["last_guess_duplicate"] = False
 
-    state["past_guesses"].append(current_guess.lower())
+    state["past_guesses"].append(current_guess)
 
     return state
 
@@ -69,7 +70,7 @@ if __name__ == "__main__":
     list_of_words = words
 
     # Picks first word in shuffled list
-    chosen_word = random.choice(words)
+    chosen_word = random.choice(words).lower()
 
 
     state = {
