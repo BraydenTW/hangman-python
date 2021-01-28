@@ -44,11 +44,8 @@ if __name__ == "__main__":
     # Sample list of 10 words
     list_of_words = words
 
-    # Shuffle words
-    random.shuffle(list_of_words)
-
     # Picks first word in shuffled list
-    chosen_word = list_of_words[0]
+    chosen_word = random.choice(words)
 
     chosen_word_letters = []
     guessed_word_letters = []
