@@ -70,13 +70,8 @@ if __name__ == "__main__":
     # Picks first word in shuffled list
     chosen_word = random.choice(words)
 
-    chosen_word_letters = []
-    guessed_word_letters = []
-
-    # Sets up chosen word and guess arrays
-    for letter in chosen_word:
-        chosen_word_letters.append(letter)
-        guessed_word_letters.append("_")
+    chosen_word_letters = [letter for letter in chosen_word]
+    guessed_word_letters = ["_" for _ in chosen_word]
 
     hangman_lives = 6
     output_string = ""
