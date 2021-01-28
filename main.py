@@ -37,60 +37,61 @@ def guess():
     past_guesses.append(current_guess.lower())
 
 
-# Clears console at start
-os.system('cls')
-
-# Sample list of 10 words
-list_of_words = words
-
-# Shuffle words
-random.shuffle(list_of_words)
-
-# Picks first word in shuffled list
-chosen_word = list_of_words[0]
-
-chosen_word_letters = []
-guessed_word_letters = []
-
-# Sets up chosen word and guess arrays
-for letter in chosen_word:
-    chosen_word_letters.append(letter)
-    guessed_word_letters.append("_")
-
-hangman_lives = 6
-output_string = ""
-current_guess = ""
-past_guesses = []
-last_guess_duplicate = False
-
-
-# Guess while loop
-while guessed_word_letters != chosen_word_letters and hangman_lives != 0:
-
-    # Clears past turn
+if __name__ == "__main__":
+    # Clears console at start
     os.system('cls')
 
-    if last_guess_duplicate:
-        print("You already chose that letter. Pick a new one.")
+    # Sample list of 10 words
+    list_of_words = words
 
-    # Prints # of hangman lives, and the current state of their guesses
-    print("You have " + str(hangman_lives) + " more lives.")
-    print("\n")
-    print(" ".join(guessed_word_letters))
-    print("\n")
+    # Shuffle words
+    random.shuffle(list_of_words)
 
-    # Asks + checks for a letter
-    guess()
+    # Picks first word in shuffled list
+    chosen_word = list_of_words[0]
+
+    chosen_word_letters = []
+    guessed_word_letters = []
+
+    # Sets up chosen word and guess arrays
+    for letter in chosen_word:
+        chosen_word_letters.append(letter)
+        guessed_word_letters.append("_")
+
+    hangman_lives = 6
+    output_string = ""
+    current_guess = ""
+    past_guesses = []
+    last_guess_duplicate = False
 
 
-if guessed_word_letters == chosen_word_letters:
-    # User wins
-    os.system('cls')
-    print("\n")
-    print(" ".join(guessed_word_letters))
-    print("\nGreat job!")
-else:
-    # User loses
-    os.system('cls')
-    print("\n")
-    print("Nice effort. However the word was: " + chosen_word)
+    # Guess while loop
+    while guessed_word_letters != chosen_word_letters and hangman_lives != 0:
+
+        # Clears past turn
+        os.system('cls')
+
+        if last_guess_duplicate:
+            print("You already chose that letter. Pick a new one.")
+
+        # Prints # of hangman lives, and the current state of their guesses
+        print("You have " + str(hangman_lives) + " more lives.")
+        print("\n")
+        print(" ".join(guessed_word_letters))
+        print("\n")
+
+        # Asks + checks for a letter
+        guess()
+
+
+    if guessed_word_letters == chosen_word_letters:
+        # User wins
+        os.system('cls')
+        print("\n")
+        print(" ".join(guessed_word_letters))
+        print("\nGreat job!")
+    else:
+        # User loses
+        os.system('cls')
+        print("\n")
+        print("Nice effort. However the word was: " + chosen_word)
