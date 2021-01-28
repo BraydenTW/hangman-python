@@ -62,7 +62,7 @@ def print_final(win = True):
 
 if __name__ == "__main__":
     # Clears console at start
-    os.system('cls')
+    clear_screen()
 
     # Sample list of 10 words
     list_of_words = words
