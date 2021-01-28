@@ -14,6 +14,9 @@ def guess(state):
     if current_guess in state["past_guesses"]:
         state["last_guess_duplicate"] =  True
         return state
+    else:
+        state["past_guesses"].append(current_guess)
+
 
     # Check if guess is in chosen word, if not subtract a life and return
     if current_guess not in state["chosen_word_letters"]:
@@ -21,11 +24,11 @@ def guess(state):
         return state
 
     # Searches for a match between the chosen word and guessed letter
-    for i in range(len(state["chosen_word_letters"])):
-        if state["chosen_word_letters"][i] == current_guess:
-            state["guessed_word_letters"][i] = current_guess
+    state["guessed_word_letters"] = [letter if letter in state["past_guesses"] else "_" for letter in state["chosen_word_letters"]]
+    # for i in range(len(state["chosen_word_letters"])):
+    #     if state["chosen_word_letters"][i] == current_guess:
+    #         state["guessed_word_letters"][i] = current_guess
 
-    state["past_guesses"].append(current_guess)
 
     return state
 
