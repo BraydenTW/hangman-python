@@ -1,5 +1,6 @@
 import os
 import random
+from sys import platform
 from words import words
 
 
@@ -37,6 +38,13 @@ def guess():
     past_guesses.append(current_guess.lower())
 
 
+def clear_screen():
+    if platform == "win32":
+        os.system("cls")
+    else:
+        os.system("clear")
+
+
 if __name__ == "__main__":
     # Clears console at start
     os.system('cls')
@@ -66,7 +74,7 @@ if __name__ == "__main__":
     while guessed_word_letters != chosen_word_letters and hangman_lives != 0:
 
         # Clears past turn
-        os.system('cls')
+        clear_screen()
 
         if last_guess_duplicate:
             print("You already chose that letter. Pick a new one.")
@@ -83,12 +91,12 @@ if __name__ == "__main__":
 
     if guessed_word_letters == chosen_word_letters:
         # User wins
-        os.system('cls')
+        clear_screen()
         print("\n")
         print(" ".join(guessed_word_letters))
         print("\nGreat job!")
     else:
         # User loses
-        os.system('cls')
+        clear_screen()
         print("\n")
         print("Nice effort. However the word was: " + chosen_word)
