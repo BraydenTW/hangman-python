@@ -15,7 +15,7 @@ def guess(state):
 
     # Searches for a match between the chosen word and guessed letter
     for i in range(len(state["chosen_word_letters"])):
-        if state["chosen_word_letters"][i].lower() == current_guess:
+        if state["chosen_word_letters"][i] == current_guess:
             state["guessed_word_letters"][i] = current_guess
             found_letter = True
 
