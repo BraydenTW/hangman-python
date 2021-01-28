@@ -5,11 +5,15 @@ from words import words
 
 
 def guess(state):
+    '''
+    This function runs the main guessing event.  It receives the programs state, receives and input 
+    from the user, updates the state accordingly, and returns the state.
+    '''
 
     # Asks user to choose a letter
     current_guess = input("Choose a letter: ").lower()
 
-    # Check if guess is a duplicate
+    # Check if guess is a duplicate, if not add it to the past guesses list in state
     state["last_guess_duplicate"] =  False
     if current_guess in state["past_guesses"]:
         state["last_guess_duplicate"] =  True
@@ -30,18 +34,34 @@ def guess(state):
 
 
 def clear_screen():
+    '''
+    This function clears the screen based on the operating system that is being used.
+    Unix based systems and Windows systems have different os level commands to 
+    accomplish this task
+    '''
+
     if platform == "win32":
         os.system("cls")
     else:
         os.system("clear")
 
+
 def print_status(state):
+    '''
+    This function prints the status of the players game
+    '''
+
     print("You have " + str(state["hangman_lives"]) + " more lives.")
     print("\n")
     print(" ".join(state["guessed_word_letters"]))
     print("\n")
 
+
 def print_final(state, win = True):
+    '''
+    This function prints the final screen for the user at the end of the game
+    '''
+
     clear_screen()
     print("\n")
     if win:
@@ -51,7 +71,13 @@ def print_final(state, win = True):
         print("\n")
         print("Nice effort. However the word was: " + ''.join(state["chosen_word_letters"]))
 
+
+
 def main(state):
+    '''
+    This function manages the main event loop
+    '''
+
      # Guess while loop
     while state["guessed_word_letters"] != state["chosen_word_letters"] and state["hangman_lives"] != 0:
 
@@ -75,13 +101,18 @@ def main(state):
         # User loses
         print_final(state, win = False)
 
+
 if __name__ == "__main__":
+    '''
+    This function checks to ensure the file was not imported.  If the file was run directly it 
+    sets the program state and runs the main event loop
+    '''
+
     # Clears console at start
     clear_screen()
 
     # Picks first word in shuffled list
     chosen_word = random.choice(words).lower()
-
 
     state = {
         "chosen_word_letters" : [letter for letter in chosen_word],
@@ -91,5 +122,5 @@ if __name__ == "__main__":
         "last_guess_duplicate" : False
     }
 
-
+    # Run main event loop
     main(state)
