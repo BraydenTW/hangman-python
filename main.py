@@ -75,8 +75,6 @@ if __name__ == "__main__":
     guessed_word_letters = ["_" for _ in chosen_word]
 
     hangman_lives = 6
-    output_string = ""
-    current_guess = ""
     past_guesses = []
     last_guess_duplicate = False
 
