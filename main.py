@@ -25,10 +25,6 @@ def guess(state):
 
     # Searches for a match between the chosen word and guessed letter
     state["guessed_word_letters"] = [letter if letter in state["past_guesses"] else "_" for letter in state["chosen_word_letters"]]
-    # for i in range(len(state["chosen_word_letters"])):
-    #     if state["chosen_word_letters"][i] == current_guess:
-    #         state["guessed_word_letters"][i] = current_guess
-
 
     return state
 
@@ -55,27 +51,8 @@ def print_final(state, win = True):
         print("\n")
         print("Nice effort. However the word was: " + ''.join(state["chosen_word_letters"]))
 
-if __name__ == "__main__":
-    # Clears console at start
-    clear_screen()
-
-    # Sample list of 10 words
-    list_of_words = words
-
-    # Picks first word in shuffled list
-    chosen_word = random.choice(words).lower()
-
-
-    state = {
-        "chosen_word_letters" : [letter for letter in chosen_word],
-        "guessed_word_letters" : ["_" for _ in chosen_word],
-        "hangman_lives" : 6,
-        "past_guesses" : [],
-        "last_guess_duplicate" : False
-    }
-
-
-    # Guess while loop
+def main(state):
+     # Guess while loop
     while state["guessed_word_letters"] != state["chosen_word_letters"] and state["hangman_lives"] != 0:
 
         # Clears past turn
@@ -97,3 +74,22 @@ if __name__ == "__main__":
     else:
         # User loses
         print_final(state, win = False)
+
+if __name__ == "__main__":
+    # Clears console at start
+    clear_screen()
+
+    # Picks first word in shuffled list
+    chosen_word = random.choice(words).lower()
+
+
+    state = {
+        "chosen_word_letters" : [letter for letter in chosen_word],
+        "guessed_word_letters" : ["_" for _ in chosen_word],
+        "hangman_lives" : 6,
+        "past_guesses" : [],
+        "last_guess_duplicate" : False
+    }
+
+
+    main(state)
