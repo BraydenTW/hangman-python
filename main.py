@@ -6,34 +6,24 @@ from words import words
 
 def guess(state):
 
-    found_letter = False
-    duplicate_and_skip = False
-
     # Asks user to choose a letter
     current_guess = input("Choose a letter: ").lower()
 
+    # Check if guess is a duplicate
+    state["last_guess_duplicate"] =  False
+    if current_guess in state["past_guesses"]:
+        state["last_guess_duplicate"] =  True
+        return state
+
+    # Check if guess is in chosen word, if not subtract a life and return
+    if current_guess not in state["chosen_word_letters"]:
+        state["hangman_lives"] -= 1
+        return state
 
     # Searches for a match between the chosen word and guessed letter
     for i in range(len(state["chosen_word_letters"])):
         if state["chosen_word_letters"][i] == current_guess:
             state["guessed_word_letters"][i] = current_guess
-            found_letter = True
-
-    for letter in state["past_guesses"]:
-        if letter == current_guess:
-            found_letter = True
-            duplicate_and_skip = True
-            break
-
-    # If guess is wrong, they lose a life
-    if not found_letter:
-        state["hangman_lives"] -= 1
-
-    # Checks if this guess was a duplicate from the previous guesses
-    if duplicate_and_skip:
-        state["last_guess_duplicate"] = True
-    else:
-        state["last_guess_duplicate"] = False
 
     state["past_guesses"].append(current_guess)
 
