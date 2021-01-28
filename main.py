@@ -44,6 +44,21 @@ def clear_screen():
     else:
         os.system("clear")
 
+def print_status(hangman_lives, guessed_word_letters):
+    print("You have " + str(hangman_lives) + " more lives.")
+        print("\n")
+        print(" ".join(guessed_word_letters))
+        print("\n")
+
+def print_final(win = True):
+    clear_screen()
+    print("\n")
+    if win:
+        print(" ".join(guessed_word_letters))
+        print("\nGreat job!")
+    else:
+        print("\n")
+        print("Nice effort. However the word was: " + chosen_word)
 
 if __name__ == "__main__":
     # Clears console at start
@@ -80,10 +95,7 @@ if __name__ == "__main__":
             print("You already chose that letter. Pick a new one.")
 
         # Prints # of hangman lives, and the current state of their guesses
-        print("You have " + str(hangman_lives) + " more lives.")
-        print("\n")
-        print(" ".join(guessed_word_letters))
-        print("\n")
+        print_status(hangman_lives, guessed_word_letters)
 
         # Asks + checks for a letter
         guess()
@@ -91,12 +103,7 @@ if __name__ == "__main__":
 
     if guessed_word_letters == chosen_word_letters:
         # User wins
-        clear_screen()
-        print("\n")
-        print(" ".join(guessed_word_letters))
-        print("\nGreat job!")
+        print_final()
     else:
         # User loses
-        clear_screen()
-        print("\n")
-        print("Nice effort. However the word was: " + chosen_word)
+        print_final(win = False)
