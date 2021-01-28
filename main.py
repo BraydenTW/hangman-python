@@ -4,9 +4,8 @@ from sys import platform
 from words import words
 
 
-def guess():
+def guess(hangman_lives, past_guesses, last_guess_duplicate):
 
-    global hangman_lives, past_guesses, last_guess_duplicate
     found_letter = False
     duplicate_and_skip = False
 
@@ -36,6 +35,8 @@ def guess():
         last_guess_duplicate = False
 
     past_guesses.append(current_guess.lower())
+
+    return hangman_lives, past_guesses, last_guess_duplicate
 
 
 def clear_screen():
@@ -93,7 +94,7 @@ if __name__ == "__main__":
         print_status(hangman_lives, guessed_word_letters)
 
         # Asks + checks for a letter
-        guess()
+        hangman_lives, past_guesses, last_guess_duplicate = guess(hangman_lives, past_guesses, last_guess_duplicate)
 
 
     if guessed_word_letters == chosen_word_letters:
