@@ -46,9 +46,9 @@ def clear_screen():
 
 def print_status(hangman_lives, guessed_word_letters):
     print("You have " + str(hangman_lives) + " more lives.")
-        print("\n")
-        print(" ".join(guessed_word_letters))
-        print("\n")
+    print("\n")
+    print(" ".join(guessed_word_letters))
+    print("\n")
 
 def print_final(win = True):
     clear_screen()
